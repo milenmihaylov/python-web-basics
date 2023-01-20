@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>djangoDemo2 Index</title>
+</head>
+<body>
+<h1>It works!</h1>
+<h2>My name is {{ name }}</h2>
+<form method="post" action="towns/create/">
+	<!--this is a comment -->
+	{%  csrf_token %}
+	<input name="name"/>
+	<input name="age"/>
+
+	<button>Create</button>
+</form>
+{% for person in people %}
+	<li>
+	{{ person.name }}, {{ person.age }}
+	</li>
+{% endfor %}
+</body>
+</html> 
