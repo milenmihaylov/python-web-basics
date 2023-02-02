@@ -10,6 +10,9 @@ class TodoAdmin(admin.ModelAdmin):
     sortable_by = 'text'
     list_filter = ['owner']
 
+    # def has_change_permission(self, request, obj=None):
+    #     return False
+
 
 # Option 1
 # admin.site.register(Todo, TodoAdmin)

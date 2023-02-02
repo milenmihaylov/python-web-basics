@@ -57,9 +57,18 @@
     <h1>My Todo List</h1>
     <form method="post" action="/todos-add/">
         {% csrf_token %}
-        <input type="text" name="text" />
-        <textarea name="description"></textarea>
-        <input type="text" name="owner">
+		<label>
+			Text
+        	<input type="text" name="text" />
+		</label>
+		<label>
+			Description
+        	<textarea name="description"></textarea>
+        </label>
+		<label>
+			Owner
+			<input type="text" name="owner">
+		</label>
         <button>Create</button>
     </form>
     {% if todos %}

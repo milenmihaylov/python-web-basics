@@ -7,3 +7,4 @@ urlpatterns = [
     path('todos-add/', create_todo),
     path('change_todo_state/<int:pk>', change_todo_state)
 ]
+
