@@ -6,7 +6,7 @@ urlpatterns = [
 	path('', index, name='index'),
 	path('todos-add/', create_todo, name='create_todo'),
 	path('update_todo/<int:pk>', update_todo, name='update_todo'),
-	path('delete/<int:pk>', delete_todo),
+	path('delete/<int:pk>', delete_todo, name='delete'),
 	# path('change_todo_state/<int:pk>', change_todo_state),
 	# path('forms/', show_forms_demo),
 ]

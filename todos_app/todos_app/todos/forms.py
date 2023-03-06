@@ -1,9 +1,8 @@
 from django import forms
 
+from todos_app.todos.models import Todo
+from todos_app.todos.validators import validate_owner_todos_count
 
-def validate_dot(value):
-	if '.' in value:
-		raise forms.ValidationError(f'\'.\' is in {value}')
 
 # def validate_min_length(min_length):
 # 	def validate(value):
@@ -11,13 +10,19 @@ def validate_dot(value):
 # 			raise forms.ValidationError(f'{value} does not meet min length requirement')
 # 	return validate
 
+class CreateTodoModelForm(forms.ModelForm):
+
+	class Meta:
+		model = Todo
+		fields = '__all__'
+		widgets = {
+			'owner': forms.RadioSelect()
+		}
+
+
 class CreateTodoForm(forms.Form):
 	title = forms.CharField(
 		max_length=30,
-		validators=[
-			validate_dot,
-			# validate_min_length(30),
-		],
 		widget=forms.TextInput(
 			attrs={
 				'class': 'form-control',
@@ -35,6 +40,9 @@ class CreateTodoForm(forms.Form):
 		widget=forms.HiddenInput(),
 		required=False,
 	)
+
+	def clean(self):
+		validate_owner_todos_count(self.cleaned_data['owner'])
 
 	def clean_bot_catcher(self):
 		value = self.cleaned_data['bot_catcher']
